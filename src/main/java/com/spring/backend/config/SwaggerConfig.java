@@ -16,7 +16,7 @@ public class SwaggerConfig {
 		return new OpenAPI().components(new Components())
 				.info(new Info()
 						.title("jwt_security")
-						.description("backend config 모듈 연습")
+						.description("backend cofig 및 환경셋팅 연습")
 						.contact(new Contact()
 								.name("eunjong")
 								.email("fds2236@naver.com")));
