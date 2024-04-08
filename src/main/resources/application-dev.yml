@@ -1,0 +1,23 @@
+# Spring Properties[dev] ========================================================
+spring:
+  config:
+    activate:
+      on-profile: "dev-setting"
+  datasource:
+    url: jdbc:mysql://localhost:3306/eanDev
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ean
+    password: asdf1234
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+    show-sql: false # Hibernate
+    hibernate:
+      ddl-auto: validate # 데이터베이스 스키마가 엔티티 클래스와 일치하는지 확인 => 불일치시 예외 발생
+
+# log 설정 파일
+#logging:
+#  config: classpath:log4j2.xml
+#  level:
+#    ROOT: INFO
+#    org.springframework: INFO

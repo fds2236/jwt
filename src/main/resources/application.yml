@@ -1,0 +1,38 @@
+# Server Properties ==================================================
+server:
+  port: 8090
+
+# Spring Properties ================================================
+spring:
+  config:
+    import:
+     - classpath:/application-local.yml
+     - classpath:/application-dev.yml
+  profiles:
+    group:
+      "local": "local-setting"
+      "dev": "dev-setting"
+    active: local
+
+  mail:
+    host: smtp.gmail.com
+    port: 465 # 465(SSL), 587(TLS)
+    username: eansoftej@gmail.com
+    password: # 구글계정-보안-앱 비밀번호
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+          starttls:
+            enable: true
+
+# jwt Properties ======================================================
+jwt:
+  public: 
+    key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvw9L3vTKN3L5dP2bbpI8
+  private:
+    key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCPu8sw4bvmhV2t   
+    

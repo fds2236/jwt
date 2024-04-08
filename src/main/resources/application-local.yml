@@ -1,0 +1,18 @@
+# Spring Properties[local] ========================================================
+spring:
+  config:
+    activate:
+      on-profile: "local-setting"
+  datasource:
+    url: jdbc:mysql://localhost:3306/eanlocal
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ean
+    password: asdf1234
+  jpa:
+    open-in-view: false
+    generate-ddl: true
+    show-sql: false # Hibernate
+    properties:
+      hibernate:
+        ddl-auto: update # none, update, validate, create, create-drop
+        format_sql: true
