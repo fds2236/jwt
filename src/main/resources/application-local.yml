@@ -11,7 +11,7 @@ spring:
   jpa:
     open-in-view: false
     generate-ddl: true
-    show-sql: false # Hibernate
+    show-sql: true # Hibernate 쿼리
     properties:
       hibernate:
         ddl-auto: update # none, update, validate, create, create-drop
