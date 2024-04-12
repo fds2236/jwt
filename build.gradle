@@ -24,11 +24,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation ('org.springframework.boot:spring-boot-starter-web'){
-	  exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	// implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	implementation ('org.springframework.boot:spring-boot-starter-web')
+	implementation 'org.springframework.boot:spring-boot-starter-mail' // 이메일 발송
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2' // 로그
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2' // 스웨거
 	implementation 'org.freemarker:freemarker:2.3.31' // 프리마커 템플릿 엔진
 	compileOnly 'org.projectlombok:lombok'
@@ -38,6 +36,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+}
+
+configurations {
+   all {
+       exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' // starter에 포함된 로깅 제외
+   }
 }
 
 tasks.named('test') {

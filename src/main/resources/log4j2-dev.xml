@@ -1,0 +1,31 @@
+<!-- log4j2-dev.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	
+	<Properties>
+		<Property name="logDir">../logs</Property>
+		<Property name="logFileName">%</Property>
+		<Property name="consoleLayout">../logs</Property>
+		<Property name="fileLayout">../logs</Property>
+		
+	</Properties>
+	
+	
+	
+	
+    <!-- Appenders: 로그를 출력하는 대상-->
+	<!-- ConsoleAppender, FileAppender, RollingFileAppender, JMSAppender, SMTPAppender, JDBCAppender 등-->
+    <Appenders>
+        <!-- 날짜별로 롤링되는 파일로 로그 출력 -->
+        <RollingFile name = "RollingFile" fileName="logs/mylog.log" filePattern="logs/%d{yyyy-MM-dd}.log">
+    		<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    		<TimeBasedTriggeringPolicy modulate="true" interval="1"/> <!-- 날짜별로 롤링되는 파일로 로그 출력 -->
+    		 <DefaultRolloverStrategy max="500" fileIndex="min" /> <!-- 롤링 파일 500개 까지 생성 -->
+		</RollingFile>
+    </Appenders>
+
+
+
+
+
+</Configuration>

@@ -1,0 +1,20 @@
+<!-- log4j2-local.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <!-- 로컬용 로깅 설정 -->
+    <Appenders>
+        <!-- 로그 출력 설정 -->
+
+    </Appenders>
+    <!-- 로컬용 로거 설정 -->
+    
+    
+    <Loggers>
+	<!--최상위 레벨 로그 설정-->
+		<Root lever="info">
+			<AppenderRef ref="RollingFile"/>
+		</Root>
+	</Loggers>
+    
+    
+</Configuration>
