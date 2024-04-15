@@ -16,9 +16,11 @@ import com.spring.backend.member.MemberEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/etc")
+@Slf4j
 @Tag(name = "Etc Controller", description = "연습용 API")
 public class EtcController {
 	
@@ -30,7 +32,7 @@ public class EtcController {
 	// http://localhost:8090/etc/get1?member=string1&member=string2&member=string3
 	// http://localhost:8090/etc/get1?member=string1,string2,string3 둘 다 가능
 	public ResponseEntity<String> get1(@Parameter(description = "회원 목록", example = "test1,test2,test3") @RequestParam("member") List<String> member){
-		System.out.println("member: " + member);
+		log.info("member: " + member);
 		return null;
 	}
 	
@@ -38,7 +40,7 @@ public class EtcController {
 	@Operation(summary = "get 요청 연습용2")
 	// http://localhost:8090/etc/get2?memberId=string&memberPwd=string&memberMail=string
 	public ResponseEntity<String> get2(@Parameter(description = "회원 엔티티") @RequestParam Map<String, Object> member){
-		System.out.println("member: " + member);
+		log.info("member: " + member);
 		return null;
 	}
 	
@@ -48,14 +50,14 @@ public class EtcController {
 	@Operation(summary = "get 요청 연습용3")
 	// http://localhost:8090/etc/get3?memberId=fds2236&memberName=silverbell&memberPwd=asdf1234&memberAddr=seoul&memberMail=test%40naver.com
 	public ResponseEntity<String> get3(@Parameter(description = "회원 엔티티") @ParameterObject MemberEntity memberEntity){
-		System.out.println("memberEntity: " + memberEntity);
+		log.info("memberEntity: " + memberEntity);
 		return null;
 	}
 	
 	@PostMapping("/post1")
 	@Operation(summary = "post 요청 연습용1")
 	public ResponseEntity<String> post1(@Parameter(description = "회원 엔티티") @RequestBody List<String> member){
-		System.out.println("member: " + member);
+		log.info("member: " + member);
 		// member: [silver, gold]
 		return null;
 	}
@@ -63,7 +65,7 @@ public class EtcController {
 	@PostMapping("/post2")
 	@Operation(summary = "post 요청 연습용2")
 	public ResponseEntity<String> post2(@Parameter(description = "회원 엔티티") @RequestBody Map<String, Object> member){
-		System.out.println("member: " + member);
+		log.info("member: " + member);
 		// member: {memberId=fds, memberPwd=asdf}
 		return null;
 	}
@@ -71,7 +73,7 @@ public class EtcController {
 	@PostMapping("/post3")
 	@Operation(summary = "post 요청 연습용3")
 	public ResponseEntity<String> post3(@Parameter(description = "회원 엔티티") @RequestBody MemberEntity member){
-		System.out.println("memberEntity: " + member);
+		log.info("memberEntity: " + member);
 		// memberEntity: MemberEntity(memberSnum=null, memberId=fds, memberName=null, memberPwd=asdf, memberAddr=null, memberMail=null, memberRegDate=null)
 		return null;
 	}
