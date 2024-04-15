@@ -3,28 +3,45 @@
 <Configuration status="WARN">
 	
 	<Properties>
-		<Property name="logDir">../logs</Property>
-		<Property name="logFileName">%</Property>
-		<Property name="consoleLayout">../logs</Property>
-		<Property name="fileLayout">../logs</Property>
-		
+		<Property name="logDir">../data/logs</Property>
+		<Property name="dailyLogFileName">access_log</Property>
+		<Property name="errorLogFileName">error_log</Property>
+		<Property name="consoleLayout">%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{3.}(%M:%L)}{bright,yellow} - %msg%n%throwable</Property>
+		<Property name="fileLayout">%d [%t] %-5level %c(%M:%L) - %m%n</Property>
 	</Properties>
-	
-	
-	
 	
     <!-- Appenders: 로그를 출력하는 대상-->
 	<!-- ConsoleAppender, FileAppender, RollingFileAppender, JMSAppender, SMTPAppender, JDBCAppender 등-->
     <Appenders>
-        <!-- 날짜별로 롤링되는 파일로 로그 출력 -->
-        <RollingFile name = "RollingFile" fileName="logs/mylog.log" filePattern="logs/%d{yyyy-MM-dd}.log">
+		
+        <!-- daily 로그 파일 출력 -->
+        <RollingFile name = "DailyLogFile" fileName="${logDir}/${dailyLogFileName}.log" filePattern="${logDir}/%d{yyyy}/%d{yyyy-MM}/${dailyLogFileName}_%d{yyyyMMdd}.log">
     		<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-    		<TimeBasedTriggeringPolicy modulate="true" interval="1"/> <!-- 날짜별로 롤링되는 파일로 로그 출력 -->
-    		 <DefaultRolloverStrategy max="500" fileIndex="min" /> <!-- 롤링 파일 500개 까지 생성 -->
+    		<TimeBasedTriggeringPolicy modulate="true" interval="1"/> <!-- filePattern에 따라 간격 조정 -->
+    		 <DefaultRolloverStrategy max="7" fileIndex="min" /> <!-- 롤링 파일 7개 까지 생성 -->
 		</RollingFile>
+		
+		<!-- error 로그 파일 출력 -->
+    	<RollingFile name = "ErrorLogFile" fileName="${logDir}/${errorLogFileName}.log" filePattern="${logDir}/error/${errorLogFileName}_%d{yyyy-MM-dd}.log">
+    		<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    		<TimeBasedTriggeringPolicy modulate="true" interval="1"/> <!-- filePattern에 따라 간격 조정 -->
+    		<DefaultRolloverStrategy max="7" fileIndex="min" /> <!-- 롤링 파일 7개 까지 생성 -->
+		</RollingFile>
+		
+		<!-- 콘솔 로그 출력-->
+		<Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${consoleLayout}" />
+        </Console>
     </Appenders>
 
-
+	<Loggers>
+		<Root level="debug" additivity="true">
+			<AppenderRef ref="console"/>
+            <AppenderRef ref="DailyLogFile"/>
+            <AppenderRef ref="ErrorLogFile" level = "ERROR"/>
+		</Root>
+		
+	</Loggers>
 
 
 
