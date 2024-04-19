@@ -31,8 +31,6 @@ spring:
 
 # jwt Properties ======================================================
 jwt:
-  public: 
-    key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvw9L3vTKN3L5dP2bbpI8
-  private:
-    key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCPu8sw4bvmhV2t   
-    
+  secret: "dustmq"
+  accessTokenExpireDate: 86400000 # 24시간 : 12 x 60 x 60 x 1000 (ms)
+  refreshTokenExpireDate: 2592000000 # 30일 : 30 x 24 x 60 x 60 x 1000 (ms)

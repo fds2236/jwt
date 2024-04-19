@@ -22,12 +22,7 @@ public class MemberService {
 	private MemberRepository memberRepostiory;
 	
 	public ResponseEntity<Map<String, Object>> join(MemberEntity member){
-
 			if(member != null) {
-				// 이메일 중복 확인
-//				if(memberRepostiory.existsByMemberMail(member.getMemberMail())) {
-//					return null;
-//				}
 				
 				// 데이터 저장
 				memberRepostiory.save(member);
@@ -49,7 +44,11 @@ public class MemberService {
 		return null;
 	}
 	
-
+	public ResponseEntity<String> login(MemberEntity member){
+		
+		
+		return null;
+	}
 	
 	
 

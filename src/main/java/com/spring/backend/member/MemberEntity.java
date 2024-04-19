@@ -3,9 +3,13 @@ package com.spring.backend.member;
 
 import java.util.Date;
 
+import com.spring.backend.util.Role;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -48,9 +52,7 @@ public class MemberEntity {
 	@Schema(description = "가입일", hidden = true)
 	private Date memberRegDate;
 	
-	
-	
-	
-	
+    @Enumerated(EnumType.STRING)
+	private Role role;
 
 }

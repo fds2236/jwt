@@ -25,6 +25,14 @@ public class MemberController {
 		memberService.join(member);
 		return null;
 	}
+	
+	
+	@PostMapping("/login")
+	@Operation(summary="로그인", description = "로그인합니다.")
+	public ResponseEntity<String> login(@RequestBody MemberEntity member){
+		memberService.login(member);
+		return null;
+	}
 
 	
 }

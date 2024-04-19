@@ -1,4 +1,5 @@
 package com.spring.backend.mail;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.backend.common.ResponseDto;
 import com.spring.backend.member.MemberEntity;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -78,8 +80,55 @@ public class EtcController {
 		return null;
 	}
 	
+	// Map 반환
+	@PostMapping("/http1")
+	@Operation(summary = "http 요청 연습용1")
+	public Map<String, Object> http1(@Parameter(description = "회원 엔티티") @RequestBody Map<String, Object> member){
+		log.info("member: " + member);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("name", "은종");
+		resultMap.put("id", "silverbell");
+		resultMap.put("phone", "01012345678");
+		resultMap.put("addr", "서울시 은평구 통일로");
+		return resultMap;
+	}
+	
+	// ResponseEntity 반환1
+	@PostMapping("/http2")
+	@Operation(summary = "http 요청 연습용2")
+	public ResponseEntity<ResponseDto> http2(@Parameter(description = "회원 엔티티") @RequestBody Map<String, Object> member){
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("name", "은종");
+		resultMap.put("id", "silverbell");
+		resultMap.put("phone", "01012345678");
+		resultMap.put("addr", "서울시 은평구 통일로");
+	    ResponseDto responseDto = new ResponseDto("200", "SUCCESS", resultMap);
+		return ResponseEntity.ok(responseDto);
+	}
+	
+	// ResponseEntity 반환2
+	@GetMapping("/http3")
+	@Operation(summary = "http 요청 연습용3")
+	public ResponseEntity<ResponseDto> http3(@Parameter(description = "회원 엔티티") @RequestParam("memberId") String memberId){
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("name", "은종");
+		resultMap.put("id", "silverbell");
+		resultMap.put("phone", "01012345678");
+		resultMap.put("addr", "서울시 은평구 통일로");
+	    ResponseDto responseDto = new ResponseDto("200", "SUCCESS", resultMap);
+		return ResponseEntity.ok(responseDto);
+	}
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
