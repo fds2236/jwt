@@ -121,9 +121,9 @@ public class EtcController {
 		return ResponseEntity.ok(responseDto);
 	}
 	
+	//test
 	
-	
-	
+
 	
 	
 	
